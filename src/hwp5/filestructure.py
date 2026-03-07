@@ -350,12 +350,8 @@ class Sections(ItemConversionStorage):
             for name in self:
                 if name.startswith('Section'):
                     idx = name[len('Section'):]
-                    try:
-                        idx = int(idx)
-                    except:
-                        pass
-                    else:
-                        yield idx
+                    idx = int(idx)
+                    yield idx
         indexes = list(gen())
         indexes.sort()
         return indexes

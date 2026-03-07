@@ -52,7 +52,7 @@ def open(path):
 
 
 def listdir(gsfole):
-    for i in xrange(gsfole.num_children()):
+    for i in range(gsfole.num_children()):
         yield gsfole.name_by_index(i)
 
 

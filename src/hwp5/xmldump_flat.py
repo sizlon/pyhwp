@@ -87,7 +87,7 @@ def expand_item_value(ev, data):
     if ev is None and data['type'] is ParaTextChunks:
         yield STARTEVENT, data
         for (start, end), item in data['value']:
-            if isinstance(item, unicode):
+            if isinstance(item, str):
                 yield None, {
                     'bin_offset': data['bin_offset'] + start * 2,
                     'type': Text,
@@ -119,10 +119,10 @@ def xmlevents_from_modelevents(model_events):  # noqa
             if ev is STARTEVENT:
                 yield ev, ('Record', {
                     'tagname': record['tagname'],
-                    'tagid': unicode(record['tagid']),
-                    'seqno': unicode(record['seqno']),
-                    'level': unicode(record['level']),
-                    'size': unicode(record['size']),
+                    'tagid': str(record['tagid']),
+                    'seqno': str(record['seqno']),
+                    'level': str(record['level']),
+                    'size': str(record['size']),
                 })
             elif ev is ENDEVENT:
                 yield ev, 'Record'
@@ -154,14 +154,14 @@ def xmlevents_from_modelevents(model_events):  # noqa
             elif ev is None:
                 atrs = {
                     'type': typename,
-                    'value': unicode(data['value'])
+                    'value': str(data['value'])
                 }
                 if 'name' in data:
                     atrs['name'] = data['name']
                 if 'bin_offset' in data:
-                    atrs['offset'] = unicode(data['bin_offset'])
+                    atrs['offset'] = str(data['bin_offset'])
                 if 'bin_value' in data:
-                    atrs['bin_value'] = unicode(data['bin_value'])
+                    atrs['bin_value'] = str(data['bin_value'])
                 if 'bin_type' in data:
                     atrs['type'] = data['bin_type'].__name__
                 yield STARTEVENT, ('item', atrs)
@@ -190,9 +190,9 @@ def xmlevents_from_modelevents(model_events):  # noqa
                         atrs = {
                             'type': datatype.basetype.__name__,
                             'name': bitfield_name,
-                            'msb': unicode(desc.msb),
-                            'lsb': unicode(desc.lsb),
-                            'value': unicode(int(value))
+                            'msb': str(desc.msb),
+                            'lsb': str(desc.lsb),
+                            'value': str(int(value))
                         }
                         yield STARTEVENT, ('bits', atrs)
 

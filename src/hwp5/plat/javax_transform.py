@@ -83,7 +83,7 @@ class XSLT:
 
         self.transformer = xslt_factory.newTransformer(xsl_source)
         for k, v in params.items():
-            self.transformer.setParameter(k, unicode(v))
+            self.transformer.setParameter(k, str(v))
 
     def transform(self, input, output):
         '''

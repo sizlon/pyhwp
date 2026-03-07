@@ -86,7 +86,7 @@ class RelaxNG:
         p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=output)
         try:
             yield p.stdin
-        except:
+        except Exception:
             p.stdin.close()
             p.wait()
             raise

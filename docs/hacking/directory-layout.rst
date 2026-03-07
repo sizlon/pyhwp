@@ -6,13 +6,15 @@ Directory Layout
 
    pyhwp                   Project Root
      |
-     +-- pyhwp/            Source packages root
+     +-- src/              Source packages root
      |     |
      |     +-- hwp5/       Source package
      |
-     +-- pyhwp-tests/      Test packages root
+     +-- tests/      Test packages root
      |     |
      |     +-- hwp5_tests/ Test package
+     |     |
+     |     +-- cli_tests/  CLI tests
      |
      +-- docs/             Documentations, i.e. this document!
      |
@@ -41,8 +43,8 @@ Followings are ``pyhwp`` specific informations:
 
 .. include:: directory-layout/bin.rst
 
-.. include:: directory-layout/pyhwp.rst
+.. include:: directory-layout/src.rst
 
-.. include:: directory-layout/pyhwp-tests.rst
+.. include:: directory-layout/tests.rst
 
 .. include:: directory-layout/tools.rst

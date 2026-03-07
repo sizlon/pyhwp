@@ -567,7 +567,7 @@ def modelevents_to_xmlevents(modelevents):
                     yield x
             elif event is ENDEVENT:
                 yield ENDEVENT, model.__name__
-        except:
+        except Exception:
             logger.error('model: %s', pformat({
                 'event': event,
                 'model': model,
@@ -608,7 +608,7 @@ class XmlEvents(object):
         tmpfile = TemporaryFile()
         try:
             self.dump(tmpfile, **kwargs)
-        except:
+        except Exception:
             tmpfile.close()
             raise
 

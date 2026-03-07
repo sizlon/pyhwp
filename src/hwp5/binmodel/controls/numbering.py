@@ -55,13 +55,13 @@ class AutoNumbering(NumberingControl):
         yield WCHAR, 'suffix',
     attributes = classmethod(attributes)
 
-    def __unicode__(self):
+    def __str__(self):
         prefix = u''
         suffix = u''
         if self.flags.kind == self.Kind.FOOTNOTE:
             if self.suffix != u'\x00':
                 suffix = self.suffix
-        return prefix + unicode(self.number) + suffix
+        return prefix + str(self.number) + suffix
 
 
 class NewNumbering(NumberingControl):

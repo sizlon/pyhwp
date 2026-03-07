@@ -7,7 +7,7 @@
    
    Do various operations on HWPv5 files.
    
-   optional arguments:
+   options:
      -h, --help            show this help message and exit
      --loglevel LOGLEVEL   Set log level.
      --logfile LOGFILE     Set log file.
@@ -48,7 +48,7 @@ version 명령
    positional arguments:
      <hwp5file>  .hwp file to analyze
    
-   optional arguments:
+   options:
      -h, --help  show this help message and exit
 
 HWPv5 파일의 파일 포맷 버젼을 확인한다::
@@ -70,7 +70,7 @@ header 명령
    positional arguments:
      <hwp5file>  .hwp file to analyze
    
-   optional arguments:
+   options:
      -h, --help  show this help message and exit
 
    $ hwp5proc header samples/sample-5017.hwp
@@ -104,7 +104,7 @@ summaryinfo 명령
    positional arguments:
      <hwp5file>  .hwp file to analyze
    
-   optional arguments:
+   options:
      -h, --help  show this help message and exit
 
    $ hwp5proc summaryinfo samples/sample-5017.hwp
@@ -136,7 +136,7 @@ ls 명령
    positional arguments:
      <hwp5file>  .hwp file to analyze
    
-   optional arguments:
+   options:
      -h, --help  show this help message and exit
      --vstreams  Process with virtual streams (i.e. parsed/converted form of real
                  streams)
@@ -194,7 +194,7 @@ cat 명령
      <hwp5file>  .hwp file to analyze
      <stream>    Internal path of a stream to extract
    
-   optional arguments:
+   options:
      -h, --help  show this help message and exit
      --vstreams  Process with virtual streams (i.e. parsed/converted form of real
                  streams)
@@ -260,7 +260,7 @@ unpack 명령
      <hwp5file>       .hwp file to analyze
      <out-directory>  Output directory
    
-   optional arguments:
+   options:
      -h, --help       show this help message and exit
      --vstreams       Process with virtual streams (i.e. parsed/converted form of
                       real streams)
@@ -318,7 +318,7 @@ rawunz 명령
    
    Deflate an headerless zlib-compressed stream
    
-   optional arguments:
+   options:
      -h, --help  show this help message and exit
 
    $ rm -f Section0 Section0.rawz
@@ -338,7 +338,7 @@ diststream 명령
    
    Decode a distribute document stream.
    
-   optional arguments:
+   options:
      -h, --help  show this help message and exit
      --sha1      Print SHA-1 value for decryption.
      --key       Print decrypted key.
@@ -373,7 +373,7 @@ records 명령
      <record-stream>       Record-structured internal streams. (e.g. DocInfo,
                            BodyText/*)
    
-   optional arguments:
+   options:
      -h, --help            show this help message and exit
      --simple              Print records as simple tree
      --json                Print records as json
@@ -439,7 +439,7 @@ models 명령
      <record-stream>       Record-structured internal streams. (e.g. DocInfo,
                            BodyText/*)
    
-   optional arguments:
+   options:
      -h, --help            show this help message and exit
      --file-format-version <version>, -V <version>
                            Specifies HWPv5 file format version of the standard
@@ -837,7 +837,7 @@ find 명령
    positional arguments:
      <hwp5files>           .hwp files to analyze
    
-   optional arguments:
+   options:
      -h, --help            show this help message and exit
      --from-stdin          get filenames from stdin
      --model <model-name>  filter with record model name
@@ -1345,7 +1345,7 @@ xml 명령
    positional arguments:
      <hwp5file>            .hwp file to analyze
    
-   optional arguments:
+   options:
      -h, --help            show this help message and exit
      --embedbin            Embed BinData/* streams in the output XML.
      --no-xml-decl         Do not output <?xml ... ?> XML declaration.

@@ -45,8 +45,9 @@ def is_enabled():
             logger.debug('%s: forced to be %s by PYHWP_PLAT_UNO', __name__,
                          'enabled' if forced else 'disabled')
             return forced
-        except:
+        except Exception as e:
             logger.warning('PYHWP_PLAT_UNO=%s (invalid)', PYHWP_PLAT_UNO)
+            logger.exception(e)
     logger.debug('%s: is %s', __name__, 'enabled' if enabled else 'disabled')
     return enabled
 
@@ -202,7 +203,8 @@ class OleStorage(object):
             self.oless = oless_from_filename(stg)
             try:
                 self.oless.getElementNames()
-            except:
+            except Exception as e:
+                logger.exception(e)
                 errormsg = 'Not a valid OLE2 Compound Binary File.'
                 raise InvalidOleStorageError(errormsg)
         else:

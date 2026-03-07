@@ -1,15 +1,18 @@
 argcomplete >= 3.0.8
 babel >= 2.12.1
+certifi >= 2023.7.22
+cffi >= 2.0.0
 colorlog >= 6.7.0
 jip >= 0.9.16
 jupyter
 lxml
 notebook >= 6.5.4
-pip-tools >= 6.13.0
+pip-tools >= 7.5.3
+pygments >= 2.15.0
 requests >= 2.31.0
 restview
 tox >= 4.5.2
 urllib3 >= 1.26.15
 wheel >= 0.40.0
-zc.buildout >= 3.0.1
+zc.buildout >= 5.1.3
 zest.releaser

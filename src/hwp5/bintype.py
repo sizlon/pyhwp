@@ -512,7 +512,7 @@ def main():
                 print('')
                 for k, v in sorted(item.items()):
                     print('- {} : {}'.format(k, v))
-                value = raw_input('>> ')
+                value = input('>> ')
                 value = eval(value)
                 if isinstance(item['type'], FlagsType):
                     value = item['type'](value)

@@ -46,7 +46,7 @@ def prefix_event(level_prefixed_items, root_item=None):
         while len(stack) < level + 1:
             raise Exception('invalid level: %d, %d, %s' %
                             (level, len(stack) - 1, item))
-        assert(len(stack) == level + 1)
+        assert len(stack) == level + 1
 
         stack.append(item)
         yield STARTEVENT, item
@@ -87,7 +87,7 @@ def prefix_ancestors_from_level(level_prefixed_items, root_item=None):
         while len(stack) < level + 1:
             raise Exception('invalid level: %d, %d, %s' %
                             (level, len(stack) - 1, item))
-        assert(len(stack) == level + 1)
+        assert len(stack) == level + 1
 
         yield stack, item
         stack.append(item)

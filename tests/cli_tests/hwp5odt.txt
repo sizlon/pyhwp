@@ -9,7 +9,7 @@
    positional arguments:
      <hwp5file>           .hwp file to convert
    
-   optional arguments:
+   options:
      -h, --help           show this help message and exit
      --version            show program's version number and exit
      --loglevel LOGLEVEL  Set log level.

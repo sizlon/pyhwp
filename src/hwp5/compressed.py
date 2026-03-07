@@ -68,11 +68,12 @@ def decompress(stream):
         stream: a file-like readable
         returns a file-like readable
     '''
-    
+
     # #176 참고. #175의 임시방편을 사용한다.
     compressed_maybe = stream.read()
     try:
-        decompressed = zlib.decompress(compressed_maybe, -15)  # without gzip header
+        # without gzip header
+        decompressed = zlib.decompress(compressed_maybe, -15)
     except zlib.error:
         return BytesIO(compressed_maybe)
     else:

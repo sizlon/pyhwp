@@ -58,7 +58,7 @@ all: $(ALL)
 
 .PHONY: bootstrap
 bootstrap:
-	[ -e bin/activate ] || virtualenv -p python2.7 .
+	[ -e bin/activate ] || python3 -m venv .venv
 	$(VENV) pip install -U setuptools pip wheel pip-tools
 	make update-requirements
 	$(VENV) buildout
@@ -122,7 +122,7 @@ notebook:
 
 .PHONY: test
 test:
-	$(VENV) tox --parallel 2 -e py27,py38
+	$(VENV) tox -e py311
 
 .PHONY: test-report
 test-report:
