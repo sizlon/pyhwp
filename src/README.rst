@@ -1,4 +1,4 @@
-``pyhwp/`` - the main source code
+``src/`` - the main source code
 ---------------------------------
 
 ``hwp5/``

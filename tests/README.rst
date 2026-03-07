@@ -1,4 +1,4 @@
-``pyhwp-tests/`` - the main test suite
+``tests/`` - the main test suite
 --------------------------------------
 
 ``hwp5_tests/``
@@ -7,5 +7,5 @@
 ``hwp5_xsl_tests/``
    XSLT test suite.
 
-``hwp5_cli_tests.sh``
-   Command-line interface tests.
+``cli_tests``
+   Command-line interface test suite run by ``bin/clitest``.

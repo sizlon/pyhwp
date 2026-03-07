@@ -5,8 +5,8 @@ Setup development environment
 1. Install prerequisites
 ------------------------
 
-* CPython 2.7
-* `virtualenv`
+* Debian 12
+* CPython 3.11
 * GNU `Make`
 
 
@@ -23,14 +23,14 @@ Setup development environment
 Bootstrap development environment::
 
    $ make bootstrap
-   $ . bin/activate
+   $ . .venv/bin/activate
 
 4. Check basic stuffs
 ---------------------
 
 Run `hwp5proc`::
 
-   $ hwp5proc --help
+   $ bin/hwp5proc --help
 
 To run tests::
 

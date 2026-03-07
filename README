@@ -14,7 +14,7 @@ Installation
 
 from `pypi <http://pypi.org/project/pyhwp>`_::
 
-   virtualenv pyhwp
+   python3 -m venv pyhwp
    pyhwp/bin/pip install --pre pyhwp  # Install pyhwp into a virtualenv directory
 
 Or::
@@ -24,7 +24,7 @@ Or::
 Requirements
 ------------
 
-- Python 2.7, 3.5, 3.6, 3.7 or 3.8
+- Python 3.5, 3.6, 3.7, 3.8 or 3.11
 - `cryptography <https://pypi.org/project/cryptography>`_
 - `lxml <https://pypi.org/project/lxml>`_
 - `olefile <https://pypi.org/project/olefile>`_
