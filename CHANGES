@@ -1,6 +1,26 @@
 CHANGES
 =======
 
+0.1b15+sizlon.1 (2026-09-10) — modified by Sizlon (https://github.com/sizlon/pyhwp)
+--------------------------------------------------------------------------------
+
+This is a modified version of pyhwp 0.1b15, maintained by Sizlon under the same
+license (AGPL-3.0-or-later). Changes, all in src/hwp5/:
+
+- dataio.decode_utf16le_with_hypua: lone UTF-16 surrogates (seen in real-world
+  documents using vendor symbol fonts) decode to U+FFFD instead of raising
+  UnicodeDecodeError and aborting the whole document.
+- xmlformat: characters that XML 1.0 does not allow (C0 controls except
+  tab/newline/CR, lone surrogates, U+FFFE/U+FFFF) are stripped from attribute
+  values and text before serialization, so the downstream XSLT parser no longer
+  rejects the document.
+- xmlmodel.HwpSummaryInfo.events: a malformed summary-information stream
+  (unknown property type, missing stream) is skipped with a warning instead of
+  aborting body extraction.
+
+Measured on 129 failing files from a Korean public-procurement corpus
+(2026-09-10): 112 of them extract after these changes.
+
 0.1b15 (2020-05-30)
 -------------------
 

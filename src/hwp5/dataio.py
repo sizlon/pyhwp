@@ -176,8 +176,11 @@ def decode_utf16le_with_hypua(bytes):
 
     :param bytes: utf-16le encoded bytes with Hanyang-PUA codes
     :returns: a unicode string with Hangul Jamo codes
+
+    Lone surrogates (seen in real-world documents using vendor symbol fonts)
+    are replaced with U+FFFD instead of aborting the whole document.
     '''
-    return bytes.decode('utf-16le')
+    return bytes.decode('utf-16le', 'replace')
 
 
 class BitGroupDescriptor(object):

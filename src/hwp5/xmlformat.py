@@ -20,9 +20,10 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 from itertools import chain
-from xml.sax.saxutils import escape
-from xml.sax.saxutils import quoteattr
+from xml.sax.saxutils import escape as _saxutils_escape
+from xml.sax.saxutils import quoteattr as _saxutils_quoteattr
 import logging
+import re
 import sys
 
 from .filestructure import VERSION
@@ -51,6 +52,20 @@ if PY3:
 
 
 logger = logging.getLogger(__name__)
+
+
+# Characters XML 1.0 does not allow (plus lone surrogates and the two
+# noncharacters). Real-world documents carry them in style names and paragraph
+# text; leaving them in makes the downstream XSLT parser reject the whole file.
+_XML_ILLEGAL = re.compile(u'[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]')
+
+
+def escape(data, entities={}):
+    return _saxutils_escape(_XML_ILLEGAL.sub(u'', data), entities)
+
+
+def quoteattr(data, entities={}):
+    return _saxutils_quoteattr(_XML_ILLEGAL.sub(u'', data), entities)
 
 
 def xmlattrval(value):

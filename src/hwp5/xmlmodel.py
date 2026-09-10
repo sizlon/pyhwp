@@ -640,10 +640,17 @@ class ModelEventStream(binmodel.ModelStream, XmlEventsMixin):
 class HwpSummaryInfo(filestructure.HwpSummaryInfo, XmlEventsMixin):
 
     def events(self, **context):
-        generator = PropertySetStreamModelEventsGenerator(context)
-        events = generator.generateModelEvents(self.propertySetStream)
-        element = HwpSummaryInfo, {}, context
-        return wrap_modelevents(element, events)
+        # The summary stream is metadata only; a malformed one (unknown
+        # property type, missing stream) must not abort body extraction.
+        # Materialize first so a failure never leaves an unbalanced element.
+        try:
+            generator = PropertySetStreamModelEventsGenerator(context)
+            events = generator.generateModelEvents(self.propertySetStream)
+            element = HwpSummaryInfo, {}, context
+            return iter(list(wrap_modelevents(element, events)))
+        except Exception as e:
+            logger.warning('HwpSummaryInfo skipped: %s: %s', type(e).__name__, e)
+            return iter(())
 
 
 class PropertySetStreamModelEventsGenerator(object):
