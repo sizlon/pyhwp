@@ -1,6 +1,22 @@
 CHANGES
 =======
 
+0.1b15+sizlon.2 (2026-09-19) — modified by Sizlon (https://github.com/sizlon/pyhwp)
+--------------------------------------------------------------------------------
+
+- xsl/hwp5html.xsl: text inside fields (FieldClickHere "누름틀", FieldHyperLink,
+  FieldBookmark …) is now rendered. Upstream selected only direct children of
+  LineSeg, so field contents — often the key values of a public notice form
+  (project name, amount, schedule) — were silently dropped from the HTML.
+  Measured on 20 normal documents: missing characters vs. the document model
+  0.215% -> 0.062%, and no character present before is lost.
+- xmlmodel.match_field_start_end: the open-field stack is scoped per table.
+  Upstream used one stack for the whole section, so a field opened in a
+  paragraph that contains a table was closed and reopened at every line break
+  inside the table cells; after the table, the field's end no longer matched
+  and wrap_columns aborted with AssertionError (69 files in the corpus). With
+  the scoped stack these files extract with no missing characters (3 checked).
+
 0.1b15+sizlon.1 (2026-09-10) — modified by Sizlon (https://github.com/sizlon/pyhwp)
 --------------------------------------------------------------------------------
 

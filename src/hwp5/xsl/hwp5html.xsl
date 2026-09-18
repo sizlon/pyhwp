@@ -127,7 +127,9 @@
         </xsl:choose>
       </xsl:attribute>
       <xsl:for-each select="LineSeg">
-        <xsl:apply-templates select="Text|ControlChar|AutoNumbering|TableControl[@inline='1']|GShapeObjectControl[@inline='1']" />
+        <!-- sizlon: 필드(누름틀·하이퍼링크·책갈피 …) 안의 글자까지. 상류는 LineSeg 직속 자식만 골라
+             누름틀 값(용역명·금액·일정 등)이 통째로 빠졌다. -->
+        <xsl:apply-templates select="Text|ControlChar|AutoNumbering|TableControl[@inline='1']|GShapeObjectControl[@inline='1']|*[starts-with(local-name(), 'Field')]" />
       </xsl:for-each>
     </xsl:element>
     <xsl:apply-templates select="LineSeg/TableControl[@inline='0']" />
@@ -135,6 +137,11 @@
   </xsl:template>
 
   <xsl:template match="ControlChar"><xsl:value-of select="@char"/></xsl:template>
+
+  <!-- sizlon: 필드는 감싸기만 한다 — 안의 글자·제어문자·중첩 필드를 문단 흐름 그대로 -->
+  <xsl:template match="*[starts-with(local-name(), 'Field')]">
+    <xsl:apply-templates select="Text|ControlChar|AutoNumbering|TableControl[@inline='1']|GShapeObjectControl[@inline='1']|*[starts-with(local-name(), 'Field')]" />
+  </xsl:template>
 
   <xsl:template match="Paragraph/LineSeg/Text">
     <xsl:element name="span">

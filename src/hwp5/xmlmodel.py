@@ -395,10 +395,21 @@ def make_paragraphs_children_of_listheader(event_prefixed_mac,
 
 
 def match_field_start_end(event_prefixed_mac):
-    stack = []
+    # sizlon: 필드 스택을 표마다 따로 둔다. 상류는 문서 전체에 스택 하나라, 바깥 문단에서 열린
+    # 누름틀·책갈피가 그 문단 안 표로 들어가면 표 칸의 줄 경계(mfse_lineseg)가 바깥 필드까지
+    # 닫았다 열어, 표가 끝난 뒤 바깥 필드의 끝이 짝을 잃고 wrap_columns 의 assert 에서 죽었다
+    # (나라장터 코퍼스 69건). 표 안의 줄 경계는 표 안에서 열린 필드만 다룬다.
+    stacks = [[]]
     for event, item in event_prefixed_mac:
         (model, attributes, context) = item
-        if issubclass(model, Field):
+        stack = stacks[-1]
+        if model is TableControl:
+            if event is STARTEVENT:
+                stacks.append([])
+            elif len(stacks) > 1:
+                stacks.pop()      # 표 안에서 못 닫힌 필드는 마지막 줄 경계에서 이미 닫혔다
+            yield event, item
+        elif issubclass(model, Field):
             for x in mfse_field(event, stack, item):
                 yield x
         elif model is LineSeg:
